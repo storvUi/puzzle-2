@@ -1,27 +1,23 @@
 {
-  "family": "arale",
-  "name": "puzzle",
-  "version": "1.0.0",
-  "description": "The best project ever.",
-  "homepage": "https://github.com/storv/puzzle",
-  "author": "",
-  "maintainers": [
-    "",
-    ""
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/storv/puzzle.git"
-  },
-  "bugs": {
-    "url": ""
-  },
-  "keywords": [],
-  "licenses": "MIT",
-  "spm": {
-    "output": ["puzzle.js"],
-    "alias": {},
-    "devAlias": {},
-    "engines": {}
-  }
+    "name": "puzzle",
+    "version": "1.0.0",
+    "family": "arale",
+    "description": "a puzzle game",
+    "homepage": "https://github.com/popomore/puzzle",
+    "author": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/popomore/puzzle"
+    },
+    "bugs": {
+        "url": "https://github.com/popomore/puzzle/issues"
+    },
+    "license": "MIT",
+    "spm": {
+        "alias": {
+          "$": "$",
+          "popup": "arale/popup/1.0.2/popup"
+        },
+        "output": ["puzzle.js"]
+    }
 }

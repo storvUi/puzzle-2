@@ -1,14 +1,45 @@
-REPORTER = spec
-install:
-	rm -fr _theme
-	git clone git://github.com/aralejs/nico-arale.git _theme
-	./node_modules/.bin/nico build --theme _theme -C _theme/nico.js
+THEME = $(HOME)/.spm/themes/arale
 
-test: install
-	./node_modules/.bin/mocha-browser _site/tests/runner.html -S --reporter $(REPORTER)
+build-doc:
+	@nico build -C $(THEME)/nico.js
 
-test-cov:
-	./node_modules/.bin/jscoverage src _site/src-cov
-	./node_modules/.bin/mocha-browser _site/tests/runner.html?cov -S -R html-cov > coverage.html
+debug:
+	@nico server -C $(THEME)/nico.js --watch debug
 
-.PHONY: install test test-cov
+server:
+	@nico server -C $(THEME)/nico.js
+
+watch:
+	@nico server -C $(THEME)/nico.js --watch
+
+publish-doc: clean build-doc
+	@spm publish --doc _site
+
+clean:
+	@rm -fr _site
+
+publish: clean build-doc
+	@ghp-import _site
+	@git push origin gh-pages
+
+reporter = spec
+url = tests/runner.html
+test-task:
+	@mocha-phantomjs --reporter=${reporter} http://127.0.0.1:8000/${url}
+
+test-src:
+	@node $(THEME)/server.js _site $(MAKE) test-task
+
+test-dist:
+	@$(MAKE) test-src url=tests/runner.html?dist
+
+test: test-src test-dist
+
+coverage:
+	@rm -fr _site/src-cov
+	@jscoverage --encoding=utf8 src _site/src-cov
+	@$(MAKE) test-dist reporter=json-cov url=tests/runner.html?cov | node $(THEME)/html-cov.js > tests/coverage.html
+	@echo "Build coverage to tests/coverage.html"
+
+
+.PHONY: build-doc debug server publish clean test coverage
