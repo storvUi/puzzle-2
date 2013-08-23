@@ -1,0 +1,27 @@
+{
+  "family": "arale",
+  "name": "puzzle",
+  "version": "1.0.0",
+  "description": "The best project ever.",
+  "homepage": "https://github.com/storv/puzzle",
+  "author": "",
+  "maintainers": [
+    "",
+    ""
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/storv/puzzle.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [],
+  "licenses": "MIT",
+  "spm": {
+    "output": ["puzzle.js"],
+    "alias": {},
+    "devAlias": {},
+    "engines": {}
+  }
+}
