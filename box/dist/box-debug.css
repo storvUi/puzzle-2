@@ -1,0 +1,6 @@
+/*! define alice/box/1.0.0/box-debug.css */
+/* alice.box 样式模块 */
+
+.alice-box {
+	border:1px solid red;
+}
